@@ -14,8 +14,14 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol {
     @IBOutlet weak var incomeDisplay: UILabel!
     @IBOutlet weak var expenseDisplay: UILabel!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // initialize balance on first day of month
+        if Calendar.current.component(.day, from: Date()) == 1 {
+            initBalance()
+        }
         
         // calculate current balance
         UserDefaults.standard.set(UserDefaults.standard.integer(forKey: "incomeBalance") - UserDefaults.standard.integer(forKey: "expenseBalance"), forKey: "currentBalance")
@@ -34,7 +40,7 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol {
         // Do any additional setup after loading the view.
     }
     
-    // initialze balance on first day of month
+    // initialze balance
     func initBalance(){
         let defaults = UserDefaults.standard
         defaults.set(0, forKey: "currentBalance")
@@ -43,18 +49,31 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol {
     }
     
     // update expense
-    func updateExpense(expenseAmount: String) {
+    func updateExpense(transDate: String, expenseAmount: String) {
         let updatedExpense:Int = Int(expenseAmount)! + UserDefaults.standard.integer(forKey: "expenseBalance")
         UserDefaults.standard.set(updatedExpense, forKey: "expenseBalance")
+        
+        // add entry to table
+        
+        TransactionItem.init(date: transDate, amount: expenseAmount)
+        
         viewDidLoad()
     }
     
     // update income
-    func updateIncome(incomeAmount: String) {
+    func updateIncome(transDate: String, incomeAmount: String) {
         let updatedIncome: Int = Int(incomeAmount)! + UserDefaults.standard.integer(forKey: "incomeBalance")
         UserDefaults.standard.set(updatedIncome, forKey: "incomeBalance")
         viewDidLoad()
     }
+    
+    // table view
+    /* override func tableView(_ tableView: UITableView,
+                            cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basicStyleCell", for: indexPath)
+
+    }
+    */
     
    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if segue.identifier == "addInput" {

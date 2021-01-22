@@ -16,8 +16,8 @@
 		C81C3D4E25B8FB4400AEEBE0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C81C3D4C25B8FB4400AEEBE0 /* LaunchScreen.storyboard */; };
 		C81C3D5925B8FB4400AEEBE0 /* expense_trackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81C3D5825B8FB4400AEEBE0 /* expense_trackerTests.swift */; };
 		C81C3D6425B8FB4400AEEBE0 /* expense_trackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81C3D6325B8FB4400AEEBE0 /* expense_trackerUITests.swift */; };
-		C81C3D7525B9231E00AEEBE0 /* Util.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81C3D7425B9231E00AEEBE0 /* Util.swift */; };
 		C81C3D7F25B92BF000AEEBE0 /* inputFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81C3D7E25B92BF000AEEBE0 /* inputFieldViewController.swift */; };
+		C81C3D8D25BA7D1F00AEEBE0 /* transactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81C3D8C25BA7D1F00AEEBE0 /* transactionData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,8 +53,8 @@
 		C81C3D5F25B8FB4400AEEBE0 /* expense_trackerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = expense_trackerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C81C3D6325B8FB4400AEEBE0 /* expense_trackerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = expense_trackerUITests.swift; sourceTree = "<group>"; };
 		C81C3D6525B8FB4400AEEBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C81C3D7425B9231E00AEEBE0 /* Util.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Util.swift; sourceTree = "<group>"; };
 		C81C3D7E25B92BF000AEEBE0 /* inputFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inputFieldViewController.swift; sourceTree = "<group>"; };
+		C81C3D8C25BA7D1F00AEEBE0 /* transactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transactionData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,12 +109,12 @@
 				C81C3D4025B8FB4100AEEBE0 /* SceneDelegate.swift */,
 				C81C3D4225B8FB4100AEEBE0 /* ViewController.swift */,
 				C81C3D7E25B92BF000AEEBE0 /* inputFieldViewController.swift */,
+				C81C3D8C25BA7D1F00AEEBE0 /* transactionData.swift */,
 				C81C3D4425B8FB4100AEEBE0 /* Main.storyboard */,
 				C81C3D4A25B8FB4400AEEBE0 /* Assets.xcassets */,
 				C81C3D4C25B8FB4400AEEBE0 /* LaunchScreen.storyboard */,
 				C81C3D4F25B8FB4400AEEBE0 /* Info.plist */,
 				C81C3D4725B8FB4100AEEBE0 /* expense_tracker.xcdatamodeld */,
-				C81C3D7425B9231E00AEEBE0 /* Util.swift */,
 			);
 			path = expense_tracker;
 			sourceTree = "<group>";
@@ -267,9 +267,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C81C3D8D25BA7D1F00AEEBE0 /* transactionData.swift in Sources */,
 				C81C3D4325B8FB4100AEEBE0 /* ViewController.swift in Sources */,
 				C81C3D3F25B8FB4100AEEBE0 /* AppDelegate.swift in Sources */,
-				C81C3D7525B9231E00AEEBE0 /* Util.swift in Sources */,
 				C81C3D4125B8FB4100AEEBE0 /* SceneDelegate.swift in Sources */,
 				C81C3D7F25B92BF000AEEBE0 /* inputFieldViewController.swift in Sources */,
 				C81C3D4925B8FB4100AEEBE0 /* expense_tracker.xcdatamodeld in Sources */,

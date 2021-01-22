@@ -68,7 +68,7 @@
                                     <segment title="Income"/>
                                 </segments>
                                 <connections>
-                                    <action selector="segControl:" destination="AwF-if-ZcD" eventType="valueChanged" id="MZh-Cc-Cxp"/>
+                                    <action selector="segmentedControl:" destination="AwF-if-ZcD" eventType="valueChanged" id="EOF-Xo-1jC"/>
                                 </connections>
                             </segmentedControl>
                             <datePicker contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="compact" translatesAutoresizingMaskIntoConstraints="NO" id="ckM-1s-WJE">
@@ -104,7 +104,9 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="datePicker" destination="ckM-1s-WJE" id="4QT-zh-hz5"/>
                         <outlet property="inputAmount" destination="BIu-lX-lZX" id="6hG-m2-bxt"/>
+                        <outlet property="segmentedControl" destination="c1d-hG-Ood" id="3Zg-bm-Lb1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nny-P3-frt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -164,6 +166,46 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Rq-mq-eOT">
                                 <rect key="frame" x="25" y="367" width="364" height="415"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="89" id="0Iz-yx-X3O">
+                                        <rect key="frame" x="0.0" y="28" width="364" height="89"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0Iz-yx-X3O" id="3Gv-EI-YUo">
+                                            <rect key="frame" x="0.0" y="0.0" width="364" height="89"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Groceries" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKQ-0R-myb">
+                                                    <rect key="frame" x="16" y="16" width="85" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jan 22" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zCj-Os-Fxc">
+                                                    <rect key="frame" x="16" y="51" width="47" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="$10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EtR-M3-Pfz">
+                                                    <rect key="frame" x="311" y="32" width="33" height="24"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="zCj-Os-Fxc" firstAttribute="top" secondItem="xKQ-0R-myb" secondAttribute="bottom" constant="11" id="5eW-hd-n1d"/>
+                                                <constraint firstItem="zCj-Os-Fxc" firstAttribute="top" secondItem="xKQ-0R-myb" secondAttribute="bottom" constant="11" id="DDO-yz-bdF"/>
+                                                <constraint firstItem="xKQ-0R-myb" firstAttribute="top" secondItem="3Gv-EI-YUo" secondAttribute="topMargin" constant="5" id="MmF-fP-T9Z"/>
+                                                <constraint firstItem="zCj-Os-Fxc" firstAttribute="leading" secondItem="3Gv-EI-YUo" secondAttribute="leadingMargin" id="Q6F-nv-W17"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="zCj-Os-Fxc" secondAttribute="bottom" constant="9" id="QY3-rb-LIK"/>
+                                                <constraint firstItem="EtR-M3-Pfz" firstAttribute="top" secondItem="3Gv-EI-YUo" secondAttribute="topMargin" constant="21" id="UGr-Pd-FcA"/>
+                                                <constraint firstItem="xKQ-0R-myb" firstAttribute="leading" secondItem="3Gv-EI-YUo" secondAttribute="leadingMargin" id="Zed-BJ-jqv"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="EtR-M3-Pfz" secondAttribute="bottom" constant="22" id="wCY-C5-PLw"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ur3-ar-5ce">
                                 <rect key="frame" x="164" y="830" width="86" height="36"/>

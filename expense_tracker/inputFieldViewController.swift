@@ -8,14 +8,20 @@
 import UIKit
 
 protocol MyDataSendingDelegateProtocol {
-    func updateExpense(expenseAmount: String)
+    func updateExpense(transDate: String, expenseAmount: String)
+    func updateIncome(transDate: String, incomeAmount: String)
 }
 
 class inputFieldViewController: UIViewController {
     
     @IBOutlet weak var inputAmount: UITextField!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     var delegate: MyDataSendingDelegateProtocol? = nil
+    
+    // default value
+    var inputStatus: String = "expense"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,10 +31,30 @@ class inputFieldViewController: UIViewController {
     
     // done button
     @IBAction func finishInput(_ sender: Any) {
-        if self.delegate != nil && self.inputAmount.text != nil {
-                    let dataToBeSent = self.inputAmount.text
-                    self.delegate?.updateExpense(expenseAmount: dataToBeSent!)
-                    dismiss(animated: true, completion: nil)
+        // expense
+        if self.delegate != nil && self.inputAmount.text != nil && inputStatus == "expense"
+        {
+            // return date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d, yyyy"
+            let date = dateFormatter.string(from: datePicker.date)
+            // return amount
+            let amount = self.inputAmount.text
+            // delegate
+            self.delegate?.updateExpense(transDate: date, expenseAmount: amount!)
+                dismiss(animated: true, completion: nil)
+        }
+        // income
+        else if self.delegate != nil && self.inputAmount.text != nil && inputStatus == "income" {
+            // return date
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d, yyyy"
+            let date = dateFormatter.string(from: datePicker.date)
+            // return amount
+            let amount = self.inputAmount.text
+            // delegate
+            self.delegate?.updateIncome(transDate: date, incomeAmount: amount!)
+            dismiss(animated: true, completion: nil)
         }
         else {
             let alertController = UIAlertController(title: "Please enter an amount", message: "Hello World", preferredStyle: UIAlertController.Style.alert)
@@ -43,9 +69,14 @@ class inputFieldViewController: UIViewController {
     }
     
     // income expense segmented control
-    
     @IBAction func segmentedControl(_ sender: Any) {
+        switch segmentedControl.selectedSegmentIndex{
+        case 0: inputStatus = "expense";
+        case 1: inputStatus = "income";
+        default: break;
+        }
     }
+
     
 
     /*
