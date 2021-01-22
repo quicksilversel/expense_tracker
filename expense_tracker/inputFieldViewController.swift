@@ -7,9 +7,15 @@
 
 import UIKit
 
+protocol MyDataSendingDelegateProtocol {
+    func updateExpense(expenseAmount: String)
+}
+
 class inputFieldViewController: UIViewController {
     
-    @IBOutlet weak var expenseInput: UITextField!
+    @IBOutlet weak var inputAmount: UITextField!
+    
+    var delegate: MyDataSendingDelegateProtocol? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +25,16 @@ class inputFieldViewController: UIViewController {
     
     // done button
     @IBAction func finishInput(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        if self.delegate != nil && self.inputAmount.text != nil {
+                    let dataToBeSent = self.inputAmount.text
+                    self.delegate?.updateExpense(expenseAmount: dataToBeSent!)
+                    dismiss(animated: true, completion: nil)
+        }
+        else {
+            let alertController = UIAlertController(title: "Please enter an amount", message: "Hello World", preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
+            present(alertController, animated:true, completion:nil)
+        }
     }
     
     // cancel button
@@ -32,12 +47,6 @@ class inputFieldViewController: UIViewController {
     @IBAction func segmentedControl(_ sender: Any) {
     }
     
-    
-    // send expense amount to main session
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       let destVC : ViewController = segue.destination as! ViewController
-        destVC.expenseAmount = expenseInput.text!
-    }
 
     /*
     // MARK: - Navigation

@@ -7,25 +7,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, MyDataSendingDelegateProtocol {
 
     @IBOutlet weak var currentDate: UILabel!
     @IBOutlet weak var balanceDisplay: UILabel!
     @IBOutlet weak var incomeDisplay: UILabel!
     @IBOutlet weak var expenseDisplay: UILabel!
     
-    // get expense amount from expense VC
-    var expenseAmount: String = ""
-    // get income amount from income VC
-    var incomeAmount: String = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // calculate current balance
+        UserDefaults.standard.set(UserDefaults.standard.integer(forKey: "incomeBalance") - UserDefaults.standard.integer(forKey: "expenseBalance"), forKey: "currentBalance")
+        
         // display balance
-        balanceDisplay.text = String(UserDefaults.standard.integer(forKey: "currentBalance"))
-        expenseDisplay.text = String( UserDefaults.standard.integer(forKey: "expenseBalance"))
-        incomeDisplay.text = String(UserDefaults.standard.integer(forKey: "incomeBalance"))
+        balanceDisplay.text = "¥" + String(UserDefaults.standard.integer(forKey: "currentBalance"))
+        expenseDisplay.text = "¥" + String( UserDefaults.standard.integer(forKey: "expenseBalance"))
+        incomeDisplay.text = "¥" + String(UserDefaults.standard.integer(forKey: "incomeBalance"))
         
         // display current date
         let date = Date()
@@ -36,11 +34,7 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-    @IBAction func addExpense(_ sender: Any) {
-        performSegue(withIdentifier: "addInput", sender: self)
-    }
-    
-    // initialize all balance to 0 to if first launched or if start of month
+    // initialze balance on first day of month
     func initBalance(){
         let defaults = UserDefaults.standard
         defaults.set(0, forKey: "currentBalance")
@@ -49,9 +43,25 @@ class ViewController: UIViewController {
     }
     
     // update expense
-    func updateExpense(){
-        UserDefaults.standard.set(Int(expenseAmount)! + UserDefaults.standard.integer(forKey: "expenseBalance"), forKey: "expenseBalance")
+    func updateExpense(expenseAmount: String) {
+        let updatedExpense:Int = Int(expenseAmount)! + UserDefaults.standard.integer(forKey: "expenseBalance")
+        UserDefaults.standard.set(updatedExpense, forKey: "expenseBalance")
+        viewDidLoad()
     }
+    
+    // update income
+    func updateIncome(incomeAmount: String) {
+        let updatedIncome: Int = Int(incomeAmount)! + UserDefaults.standard.integer(forKey: "incomeBalance")
+        UserDefaults.standard.set(updatedIncome, forKey: "incomeBalance")
+        viewDidLoad()
+    }
+    
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "addInput" {
+           let secondVC: inputFieldViewController = segue.destination as! inputFieldViewController
+           secondVC.delegate = self
+       }
+   }
 
   
 

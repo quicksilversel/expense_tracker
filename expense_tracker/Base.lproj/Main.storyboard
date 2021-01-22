@@ -64,8 +64,8 @@
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="c1d-hG-Ood">
                                 <rect key="frame" x="42" y="86" width="330" height="32"/>
                                 <segments>
-                                    <segment title="Income"/>
                                     <segment title="Expense"/>
+                                    <segment title="Income"/>
                                 </segments>
                                 <connections>
                                     <action selector="segControl:" destination="AwF-if-ZcD" eventType="valueChanged" id="MZh-Cc-Cxp"/>
@@ -104,7 +104,7 @@
                     <toolbarItems/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="expenseInput" destination="BIu-lX-lZX" id="TJy-lT-NVH"/>
+                        <outlet property="inputAmount" destination="BIu-lX-lZX" id="6hG-m2-bxt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nny-P3-frt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -170,7 +170,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="+expense"/>
                                 <connections>
-                                    <action selector="addExpense:" destination="BYZ-38-t0r" eventType="touchUpInside" id="JFH-mA-lfC"/>
+                                    <segue destination="AwF-if-ZcD" kind="presentation" identifier="addInput" id="BBR-AN-s0q"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -202,7 +202,6 @@
                         <outlet property="currentDate" destination="xP1-Na-Kub" id="mQz-cK-kDN"/>
                         <outlet property="expenseDisplay" destination="6X0-FT-Ud0" id="2Xs-Gk-LEe"/>
                         <outlet property="incomeDisplay" destination="GCy-Z6-lGa" id="27Z-Gu-1bU"/>
-                        <segue destination="AwF-if-ZcD" kind="presentation" identifier="addInput" id="RxG-EB-jRA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
