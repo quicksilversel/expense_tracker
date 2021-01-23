@@ -17,6 +17,7 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
     @IBOutlet weak var transactionDataTableView: UITableView!
    
     var transactionDataArr = [TransactionItem]()  // transaction data
+    // UserDefaults.standard.set(, forkey: "transactionDataArr")
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +63,10 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         let updatedExpense:Int = Int(expenseAmount)! + UserDefaults.standard.integer(forKey: "expenseBalance")
         UserDefaults.standard.set(updatedExpense, forKey: "expenseBalance")
         // add entry to table
-        transactionDataArr.append(TransactionItem(date: transDate, amount: "-" + expenseAmount))
+        transactionDataArr.append(TransactionItem(date: transDate, amount: "-¥" + expenseAmount))
+        
         transactionDataTableView.reloadData()
+        
         viewDidLoad()
         
     }
@@ -73,7 +76,7 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         let updatedIncome: Int = Int(incomeAmount)! + UserDefaults.standard.integer(forKey: "incomeBalance")
         UserDefaults.standard.set(updatedIncome, forKey: "incomeBalance")
         // add entry to table
-        transactionDataArr.append(TransactionItem(date: transDate, amount: "+" + incomeAmount))
+        transactionDataArr.append(TransactionItem(date: transDate, amount: "+¥" + incomeAmount))
         transactionDataTableView.reloadData()
         viewDidLoad()
     }

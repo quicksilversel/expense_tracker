@@ -31,8 +31,13 @@ class inputFieldViewController: UIViewController {
     
     // done button
     @IBAction func finishInput(_ sender: Any) {
+        // alert if textfield is empty
+        if self.inputAmount.text?.isEmpty == true {
+            let alertController = UIAlertController(title: "Error", message: "please enter an amount", preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alertController, animated:true, completion:nil)}
         // expense
-        if self.delegate != nil && self.inputAmount.text != nil && inputStatus == "expense"
+        else if self.delegate != nil && inputStatus == "expense"
         {
             // return date
             let dateFormatter = DateFormatter()
@@ -45,7 +50,7 @@ class inputFieldViewController: UIViewController {
             dismiss(animated: true, completion: nil)
         }
         // income
-        else if self.delegate != nil && self.inputAmount.text != nil && inputStatus == "income" {
+        else if self.delegate != nil && inputStatus == "income" {
             // return date
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM d, yyyy"
@@ -55,11 +60,6 @@ class inputFieldViewController: UIViewController {
             // delegate
             self.delegate?.updateIncome(transDate: date, incomeAmount: amount!)
             dismiss(animated: true, completion: nil)
-        }
-        else {
-            let alertController = UIAlertController(title: "Please enter an amount", message: "Hello World", preferredStyle: UIAlertController.Style.alert)
-            alertController.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
-            present(alertController, animated:true, completion:nil)
         }
     }
     
