@@ -11,7 +11,7 @@ class TransactionItem {
     var date: String
     var amount: String
     
-    public init(date:String, amount:String){
+    public init(date: String, amount: String){
         self.date = date
         self.amount = "¥" + amount
     }

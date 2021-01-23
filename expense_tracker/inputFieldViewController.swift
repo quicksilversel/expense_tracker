@@ -37,19 +37,19 @@ class inputFieldViewController: UIViewController {
             // return date
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM d, yyyy"
-            let date = dateFormatter.string(from: datePicker.date)
+            let date = dateFormatter.string(from: self.datePicker.date)
             // return amount
             let amount = self.inputAmount.text
             // delegate
             self.delegate?.updateExpense(transDate: date, expenseAmount: amount!)
-                dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: nil)
         }
         // income
         else if self.delegate != nil && self.inputAmount.text != nil && inputStatus == "income" {
             // return date
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM d, yyyy"
-            let date = dateFormatter.string(from: datePicker.date)
+            let date = dateFormatter.string(from: self.datePicker.date)
             // return amount
             let amount = self.inputAmount.text
             // delegate

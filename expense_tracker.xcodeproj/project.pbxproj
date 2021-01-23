@@ -18,6 +18,8 @@
 		C81C3D6425B8FB4400AEEBE0 /* expense_trackerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81C3D6325B8FB4400AEEBE0 /* expense_trackerUITests.swift */; };
 		C81C3D7F25B92BF000AEEBE0 /* inputFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81C3D7E25B92BF000AEEBE0 /* inputFieldViewController.swift */; };
 		C81C3D8D25BA7D1F00AEEBE0 /* transactionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81C3D8C25BA7D1F00AEEBE0 /* transactionData.swift */; };
+		C81C3D9625BBB12100AEEBE0 /* transactionDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81C3D9425BBB12100AEEBE0 /* transactionDataTableViewCell.swift */; };
+		C81C3D9725BBB12100AEEBE0 /* transactionDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C81C3D9525BBB12100AEEBE0 /* transactionDataTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		C81C3D6525B8FB4400AEEBE0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C81C3D7E25B92BF000AEEBE0 /* inputFieldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = inputFieldViewController.swift; sourceTree = "<group>"; };
 		C81C3D8C25BA7D1F00AEEBE0 /* transactionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transactionData.swift; sourceTree = "<group>"; };
+		C81C3D9425BBB12100AEEBE0 /* transactionDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = transactionDataTableViewCell.swift; sourceTree = "<group>"; };
+		C81C3D9525BBB12100AEEBE0 /* transactionDataTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = transactionDataTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +114,8 @@
 				C81C3D4225B8FB4100AEEBE0 /* ViewController.swift */,
 				C81C3D7E25B92BF000AEEBE0 /* inputFieldViewController.swift */,
 				C81C3D8C25BA7D1F00AEEBE0 /* transactionData.swift */,
+				C81C3D9425BBB12100AEEBE0 /* transactionDataTableViewCell.swift */,
+				C81C3D9525BBB12100AEEBE0 /* transactionDataTableViewCell.xib */,
 				C81C3D4425B8FB4100AEEBE0 /* Main.storyboard */,
 				C81C3D4A25B8FB4400AEEBE0 /* Assets.xcassets */,
 				C81C3D4C25B8FB4400AEEBE0 /* LaunchScreen.storyboard */,
@@ -240,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C81C3D9725BBB12100AEEBE0 /* transactionDataTableViewCell.xib in Resources */,
 				C81C3D4E25B8FB4400AEEBE0 /* LaunchScreen.storyboard in Resources */,
 				C81C3D4B25B8FB4400AEEBE0 /* Assets.xcassets in Resources */,
 				C81C3D4625B8FB4100AEEBE0 /* Main.storyboard in Resources */,
@@ -269,6 +276,7 @@
 			files = (
 				C81C3D8D25BA7D1F00AEEBE0 /* transactionData.swift in Sources */,
 				C81C3D4325B8FB4100AEEBE0 /* ViewController.swift in Sources */,
+				C81C3D9625BBB12100AEEBE0 /* transactionDataTableViewCell.swift in Sources */,
 				C81C3D3F25B8FB4100AEEBE0 /* AppDelegate.swift in Sources */,
 				C81C3D4125B8FB4100AEEBE0 /* SceneDelegate.swift in Sources */,
 				C81C3D7F25B92BF000AEEBE0 /* inputFieldViewController.swift in Sources */,
