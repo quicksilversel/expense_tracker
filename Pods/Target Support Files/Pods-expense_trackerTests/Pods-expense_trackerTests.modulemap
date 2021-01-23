@@ -1,0 +1,6 @@
+framework module Pods_expense_trackerTests {
+  umbrella header "Pods-expense_trackerTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
