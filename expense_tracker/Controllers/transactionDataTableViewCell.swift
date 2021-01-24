@@ -8,9 +8,11 @@
 import UIKit
 
 class transactionDataTableViewCell: UITableViewCell {
-
+    
+    // MARK: Outlets
     @IBOutlet weak var dateCell: UILabel!
     @IBOutlet weak var amountCell: UILabel!
+    @IBOutlet weak var notesCell: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

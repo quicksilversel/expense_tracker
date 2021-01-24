@@ -8,27 +8,27 @@
 import UIKit
 
 protocol MyDataSendingDelegateProtocol {
-    func updateExpense(transDate: String, expenseAmount: String)
-    func updateIncome(transDate: String, incomeAmount: String)
+    func updateExpense(transDate: String, expenseAmount: String, notes: String)
+    func updateIncome(transDate: String, incomeAmount: String, notes: String)
 }
 
 class inputFieldViewController: UIViewController {
-    
-    @IBOutlet weak var inputAmount: UITextField!
+    // MARK: Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var inputAmount: UITextField!
+    @IBOutlet weak var notes: UITextField!
     
+    // MARK: Variables
     var delegate: MyDataSendingDelegateProtocol? = nil
-    
-    // default value
-    var inputStatus: String = "expense"
+    var inputStatus: String = "expense" // set to expense by default
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-    
+    // MARK: Actions
     // done button
     @IBAction func finishInput(_ sender: Any) {
         // alert if textfield is empty
@@ -39,26 +39,30 @@ class inputFieldViewController: UIViewController {
         // expense
         else if self.delegate != nil && inputStatus == "expense"
         {
-            // return date
+            // date
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM d, yyyy"
             let date = dateFormatter.string(from: self.datePicker.date)
-            // return amount
+            // amount
             let amount = self.inputAmount.text
+            // notes
+            let notes = self.notes.text!
             // delegate
-            self.delegate?.updateExpense(transDate: date, expenseAmount: amount!)
+            self.delegate?.updateExpense(transDate: date, expenseAmount: amount!, notes: notes)
             dismiss(animated: true, completion: nil)
         }
         // income
         else if self.delegate != nil && inputStatus == "income" {
-            // return date
+            // date
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM d, yyyy"
             let date = dateFormatter.string(from: self.datePicker.date)
-            // return amount
+            // amount
             let amount = self.inputAmount.text
+            // notes
+            let notes = self.notes.text!
             // delegate
-            self.delegate?.updateIncome(transDate: date, incomeAmount: amount!)
+            self.delegate?.updateIncome(transDate: date, incomeAmount: amount!, notes: notes)
             dismiss(animated: true, completion: nil)
         }
     }
@@ -76,17 +80,4 @@ class inputFieldViewController: UIViewController {
         default: break;
         }
     }
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

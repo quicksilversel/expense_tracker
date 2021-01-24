@@ -9,18 +9,16 @@ import UIKit
 import Firebase
 
 class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableViewDelegate, UITableViewDataSource {
-
+    // MARK: Outlets
     @IBOutlet weak var currentDate: UILabel!
     @IBOutlet weak var balanceDisplay: UILabel!
     @IBOutlet weak var incomeDisplay: UILabel!
     @IBOutlet weak var expenseDisplay: UILabel!
-    
     @IBOutlet weak var transactionDataTableView: UITableView!
-   
-    var transactionDataArr = [TransactionItem]()
     
-    // firebase
-    let ref = Database.database().reference(withPath: "transaction-data")
+   // MARK: Variables
+    var transactionDataArr = [TransactionItem]()
+    let ref = Database.database().reference(withPath: "transaction-data") // firebase
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,11 +74,11 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
     }
     
     // update expense
-    func updateExpense(transDate: String, expenseAmount: String) {
+    func updateExpense(transDate: String, expenseAmount: String, notes: String) {
         let updatedExpense:Int = Int(expenseAmount)! + UserDefaults.standard.integer(forKey: "expenseBalance")
         UserDefaults.standard.set(updatedExpense, forKey: "expenseBalance")
         // add entry to table
-        let item = TransactionItem(date: transDate, amount: "-¥" + expenseAmount)
+        let item = TransactionItem(date: transDate, amount: "-¥" + expenseAmount, notes: notes)
         let itemRef = self.ref.childByAutoId()
         itemRef.setValue(item.toAnyObject())
         
@@ -92,11 +90,11 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
     }
     
     // update income
-    func updateIncome(transDate: String, incomeAmount: String) {
+    func updateIncome(transDate: String, incomeAmount: String, notes: String) {
         let updatedIncome: Int = Int(incomeAmount)! + UserDefaults.standard.integer(forKey: "incomeBalance")
         UserDefaults.standard.set(updatedIncome, forKey: "incomeBalance")
         // add entry to table
-        let item = TransactionItem(date: transDate, amount: "+¥" + incomeAmount)
+        let item = TransactionItem(date: transDate, amount: "+¥" + incomeAmount, notes: notes)
         let itemRef = self.ref.childByAutoId()
         itemRef.setValue(item.toAnyObject())
         
@@ -117,6 +115,7 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "transactionDataTableViewCell", for: indexPath) as! transactionDataTableViewCell
         cell.dateCell.text = transactionDataArr[indexPath.row].date
         cell.amountCell.text = transactionDataArr[indexPath.row].amount
+        cell.notesCell.text = transactionDataArr[indexPath.row].notes
         
         return cell
     }
