@@ -51,7 +51,7 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         transactionDataTableView.register(UINib(nibName: "transactionDataTableViewCell", bundle: nil), forCellReuseIdentifier: "transactionDataTableViewCell")
         
         // synchronize data to table view from firebase
-        ref.observe(.value, with: { snapshot in
+        ref.queryOrdered(byChild: "timestamp").observe(.value, with: { snapshot in
           var newItems: [TransactionItem] = []
           for child in snapshot.children {
             if let snapshot = child as? DataSnapshot,
@@ -80,9 +80,8 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         let updatedExpense:Int = Int(expenseAmount)! + UserDefaults.standard.integer(forKey: "expenseBalance")
         UserDefaults.standard.set(updatedExpense, forKey: "expenseBalance")
         // add entry to table
-        
         let item = TransactionItem(date: transDate, amount: "-¥" + expenseAmount)
-        let itemRef = self.ref.child(transDate)
+        let itemRef = self.ref.childByAutoId()
         itemRef.setValue(item.toAnyObject())
         
         // transactionDataArr.append(TransactionItem(date: transDate, amount: "-¥" + expenseAmount))
@@ -97,12 +96,12 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         let updatedIncome: Int = Int(incomeAmount)! + UserDefaults.standard.integer(forKey: "incomeBalance")
         UserDefaults.standard.set(updatedIncome, forKey: "incomeBalance")
         // add entry to table
-        // transactionDataArr.append(TransactionItem(date: transDate, amount: "+¥" + incomeAmount))
-        
-        // transactionDataTableView.reloadData()
         let item = TransactionItem(date: transDate, amount: "+¥" + incomeAmount)
-        let itemRef = self.ref.child(transDate)
+        let itemRef = self.ref.childByAutoId()
         itemRef.setValue(item.toAnyObject())
+        
+        // transactionDataArr.append(TransactionItem(date: transDate, amount: "+¥" + incomeAmount))
+        // transactionDataTableView.reloadData()
         
         viewDidLoad()
     }
