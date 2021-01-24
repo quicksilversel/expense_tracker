@@ -74,11 +74,11 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
     }
     
     // update expense
-    func updateExpense(transDate: String, expenseAmount: String, notes: String) {
+    func updateExpense(transDate: String, expenseAmount: String, notes: String, category: String) {
         let updatedExpense:Int = Int(expenseAmount)! + UserDefaults.standard.integer(forKey: "expenseBalance")
         UserDefaults.standard.set(updatedExpense, forKey: "expenseBalance")
         // add entry to table
-        let item = TransactionItem(date: transDate, amount: "-¥" + expenseAmount, notes: notes)
+        let item = TransactionItem(date: transDate, amount: "-¥" + expenseAmount, notes: notes, category: category)
         let itemRef = self.ref.childByAutoId()
         itemRef.setValue(item.toAnyObject())
         
@@ -90,11 +90,11 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
     }
     
     // update income
-    func updateIncome(transDate: String, incomeAmount: String, notes: String) {
+    func updateIncome(transDate: String, incomeAmount: String, notes: String, category: String) {
         let updatedIncome: Int = Int(incomeAmount)! + UserDefaults.standard.integer(forKey: "incomeBalance")
         UserDefaults.standard.set(updatedIncome, forKey: "incomeBalance")
         // add entry to table
-        let item = TransactionItem(date: transDate, amount: "+¥" + incomeAmount, notes: notes)
+        let item = TransactionItem(date: transDate, amount: "+¥" + incomeAmount, notes: notes, category: category)
         let itemRef = self.ref.childByAutoId()
         itemRef.setValue(item.toAnyObject())
         
@@ -115,7 +115,7 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "transactionDataTableViewCell", for: indexPath) as! transactionDataTableViewCell
         cell.dateCell.text = transactionDataArr[indexPath.row].date
         cell.amountCell.text = transactionDataArr[indexPath.row].amount
-        cell.notesCell.text = transactionDataArr[indexPath.row].notes
+        cell.notesCell.text = transactionDataArr[indexPath.row].category
         
         return cell
     }

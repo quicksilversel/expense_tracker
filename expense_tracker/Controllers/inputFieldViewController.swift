@@ -8,20 +8,22 @@
 import UIKit
 
 protocol MyDataSendingDelegateProtocol {
-    func updateExpense(transDate: String, expenseAmount: String, notes: String)
-    func updateIncome(transDate: String, incomeAmount: String, notes: String)
+    func updateExpense(transDate: String, expenseAmount: String, notes: String, category: String)
+    func updateIncome(transDate: String, incomeAmount: String, notes: String, category: String)
 }
 
-class inputFieldViewController: UIViewController {
+class inputFieldViewController: UIViewController, CategoryDelegateProtocol {
     // MARK: Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var inputAmount: UITextField!
     @IBOutlet weak var notes: UITextField!
+    @IBOutlet weak var inputCategory: UIButton!
     
     // MARK: Variables
     var delegate: MyDataSendingDelegateProtocol? = nil
     var inputStatus: String = "expense" // set to expense by default
+    var categoryInput: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +50,7 @@ class inputFieldViewController: UIViewController {
             // notes
             let notes = self.notes.text!
             // delegate
-            self.delegate?.updateExpense(transDate: date, expenseAmount: amount!, notes: notes)
+            self.delegate?.updateExpense(transDate: date, expenseAmount: amount!, notes: notes, category: categoryInput)
             dismiss(animated: true, completion: nil)
         }
         // income
@@ -62,7 +64,7 @@ class inputFieldViewController: UIViewController {
             // notes
             let notes = self.notes.text!
             // delegate
-            self.delegate?.updateIncome(transDate: date, incomeAmount: amount!, notes: notes)
+            self.delegate?.updateIncome(transDate: date, incomeAmount: amount!, notes: notes, category: categoryInput)
             dismiss(animated: true, completion: nil)
         }
     }
@@ -80,4 +82,17 @@ class inputFieldViewController: UIViewController {
         default: break;
         }
     }
+    
+    func getCategory(category: String) {
+        categoryInput = category
+        inputCategory.setTitle(category, for: .normal)
+    }
+    
+    // segue
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "addCategory" {
+           let secondVC: categoryViewController = segue.destination as! categoryViewController
+           secondVC.delegate = self
+       }
+   }
 }
