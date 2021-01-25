@@ -115,16 +115,22 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         let cell = tableView.dequeueReusableCell(withIdentifier: "transactionDataTableViewCell", for: indexPath) as! transactionDataTableViewCell
         cell.dateCell.text = transactionDataArr[indexPath.row].date
         cell.amountCell.text = transactionDataArr[indexPath.row].amount
-        cell.notesCell.text = transactionDataArr[indexPath.row].category
         
+        if transactionDataArr[indexPath.row].notes.isEmpty == true {
+            cell.notesCell.text = transactionDataArr[indexPath.row].category
+        }
+        else {
+            cell.notesCell.text = transactionDataArr[indexPath.row].notes
+        }
         return cell
     }
     
     // segue
    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
        if segue.identifier == "addInput" {
-           let secondVC: inputFieldViewController = segue.destination as! inputFieldViewController
-           secondVC.delegate = self
+        let destinationNavigationController = segue.destination as! UINavigationController
+        let targetController = destinationNavigationController.topViewController as! inputFieldViewController
+           targetController.delegate = self
        }
    }
     

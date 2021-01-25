@@ -38,6 +38,11 @@ class inputFieldViewController: UIViewController, CategoryDelegateProtocol {
             let alertController = UIAlertController(title: "Error", message: "please enter an amount", preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alertController, animated:true, completion:nil)}
+        // alert if category is not selected
+        else if categoryInput.isEmpty == true {
+            let alertController = UIAlertController(title: "Error", message: "please select a category", preferredStyle: UIAlertController.Style.alert)
+            alertController.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alertController, animated:true, completion:nil)}
         // expense
         else if self.delegate != nil && inputStatus == "expense"
         {

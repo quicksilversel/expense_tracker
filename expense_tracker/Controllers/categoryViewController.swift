@@ -49,7 +49,6 @@ class categoryViewController: UIViewController, UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCategory = self.categories[indexPath.row]
         self.delegate?.getCategory(category: selectedCategory)
-        dismiss(animated: true, completion: nil)
     }
     
     
