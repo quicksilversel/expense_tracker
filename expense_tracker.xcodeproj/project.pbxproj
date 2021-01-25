@@ -26,6 +26,7 @@
 		C81C3DB025BC866900AEEBE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C81C3DAE25BC866900AEEBE0 /* GoogleService-Info.plist */; };
 		C81C3DB125BC866900AEEBE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C81C3DAE25BC866900AEEBE0 /* GoogleService-Info.plist */; };
 		C844600925BDE22D0002F73D /* categoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C844600825BDE22D0002F73D /* categoryViewController.swift */; };
+		C844600E25BE73430002F73D /* incomeCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C844600D25BE73430002F73D /* incomeCategoryViewController.swift */; };
 		D96F5CE80F5598D3E0185B51 /* Pods_expense_tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93924DD50A5F4F9943A13AE6 /* Pods_expense_tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		C81C3D9525BBB12100AEEBE0 /* transactionDataTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = transactionDataTableViewCell.xib; sourceTree = "<group>"; };
 		C81C3DAE25BC866900AEEBE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C844600825BDE22D0002F73D /* categoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categoryViewController.swift; sourceTree = "<group>"; };
+		C844600D25BE73430002F73D /* incomeCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = incomeCategoryViewController.swift; sourceTree = "<group>"; };
 		E9BA44E7976576E5CE7A8200 /* Pods-expense_tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-expense_tracker.debug.xcconfig"; path = "Target Support Files/Pods-expense_tracker/Pods-expense_tracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -195,6 +197,7 @@
 				C81C3D9425BBB12100AEEBE0 /* transactionDataTableViewCell.swift */,
 				C81C3D9525BBB12100AEEBE0 /* transactionDataTableViewCell.xib */,
 				C844600825BDE22D0002F73D /* categoryViewController.swift */,
+				C844600D25BE73430002F73D /* incomeCategoryViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 			files = (
 				C81C3D8D25BA7D1F00AEEBE0 /* transactionData.swift in Sources */,
 				C81C3D4325B8FB4100AEEBE0 /* ViewController.swift in Sources */,
+				C844600E25BE73430002F73D /* incomeCategoryViewController.swift in Sources */,
 				C81C3D9625BBB12100AEEBE0 /* transactionDataTableViewCell.swift in Sources */,
 				C81C3D3F25B8FB4100AEEBE0 /* AppDelegate.swift in Sources */,
 				C844600925BDE22D0002F73D /* categoryViewController.swift in Sources */,

@@ -7,24 +7,24 @@
 
 import UIKit
 
-protocol CategoryDelegateProtocol {
-    func getCategory(category: String)
+protocol incomeCategoryDelegateProtocol {
+    func getIncomeCategory(category: String)
 }
 
-class categoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class incomeCategoryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var categoryTableView: UITableView!
     
     // MARK: variables
-    var expenseCategory: [String] = ["Groceries", "Shopping", "Transportation", "Entertainment", "Eating Out", "Rent"]
+    var incomeCategory: [String] = ["Salary", "Bonus", "Carry Over"]
     
-    var delegate: CategoryDelegateProtocol? = nil
+    var delegate: incomeCategoryDelegateProtocol? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         categoryTableView.register(UITableViewCell.self,
-                               forCellReuseIdentifier: "categoryCell")
+                               forCellReuseIdentifier: "incomeCategoryCell")
         
         categoryTableView.delegate = self
         categoryTableView.dataSource = self
@@ -37,18 +37,18 @@ class categoryViewController: UIViewController, UITableViewDelegate, UITableView
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.expenseCategory.count
+        return self.incomeCategory.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "categoryCell", for: indexPath)
-        cell.textLabel?.text = self.expenseCategory[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "incomeCategoryCell", for: indexPath)
+        cell.textLabel?.text = self.incomeCategory[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCategory = self.expenseCategory[indexPath.row]
-        self.delegate?.getCategory(category: selectedCategory)
+        let selectedCategory = self.incomeCategory[indexPath.row]
+        self.delegate?.getIncomeCategory(category: selectedCategory)
     }
     
     

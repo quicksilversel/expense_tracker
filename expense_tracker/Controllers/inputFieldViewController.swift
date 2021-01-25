@@ -12,7 +12,7 @@ protocol MyDataSendingDelegateProtocol {
     func updateIncome(transDate: String, incomeAmount: String, notes: String, category: String)
 }
 
-class inputFieldViewController: UIViewController, CategoryDelegateProtocol {
+class inputFieldViewController: UIViewController, CategoryDelegateProtocol, incomeCategoryDelegateProtocol {
     // MARK: Outlets
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var datePicker: UIDatePicker!
@@ -88,16 +88,35 @@ class inputFieldViewController: UIViewController, CategoryDelegateProtocol {
         }
     }
     
+    // category button
+    @IBAction func categoryButton(_ sender: Any) {
+        if inputStatus == "expense" {
+            self.performSegue(withIdentifier: "addExpenseCategory", sender: Any?.self)
+        }
+        else {
+            self.performSegue(withIdentifier: "addIncomeCategory", sender: Any?.self)
+        }
+    }
+    
     func getCategory(category: String) {
+        categoryInput = category
+        inputCategory.setTitle(category, for: .normal)
+    }
+    
+    func getIncomeCategory(category: String) {
         categoryInput = category
         inputCategory.setTitle(category, for: .normal)
     }
     
     // segue
    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-       if segue.identifier == "addCategory" {
+       if segue.identifier == "addExpenseCategory" {
            let secondVC: categoryViewController = segue.destination as! categoryViewController
            secondVC.delegate = self
+       }
+       else if segue.identifier == "addIncomeCategory" {
+            let secondVC: incomeCategoryViewController = segue.destination as! incomeCategoryViewController
+            secondVC.delegate = self
        }
    }
 }
