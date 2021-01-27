@@ -6,7 +6,7 @@ target 'expense_tracker' do
   use_frameworks!
 
   # Pods for expense_tracker
-
+  pod 'Charts', '~> 3.5.0'
   target 'expense_trackerTests' do
     inherit! :search_paths
     # Pods for testing

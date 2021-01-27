@@ -315,7 +315,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="lKs-7H-Xyr">
-                                <rect key="frame" x="42" y="517" width="330" height="259"/>
+                                <rect key="frame" x="42" y="526" width="330" height="250"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="statsCategory" textLabel="4Gh-JJ-lQF" detailTextLabel="8b9-Uq-QLj" style="IBUITableViewCellStyleValue1" id="WeV-wV-oFz">
@@ -344,8 +344,8 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9nr-oh-g5q">
-                                <rect key="frame" x="42" y="127" width="330" height="321"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9nr-oh-g5q" customClass="PieChartView" customModule="Charts">
+                                <rect key="frame" x="42" y="127" width="330" height="330"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="January" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aM3-N7-d2Y">
@@ -361,7 +361,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lU0-B4-g9c">
-                                <rect key="frame" x="42" y="471" width="78" height="23"/>
+                                <rect key="frame" x="42" y="480" width="78" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -373,16 +373,15 @@
                             <constraint firstItem="9nr-oh-g5q" firstAttribute="leading" secondItem="7Vr-Yq-Ln4" secondAttribute="leading" constant="42" id="3gi-32-joE"/>
                             <constraint firstItem="puI-8h-gtR" firstAttribute="top" secondItem="7Vr-Yq-Ln4" secondAttribute="top" constant="20" id="7aV-79-HME"/>
                             <constraint firstItem="7Vr-Yq-Ln4" firstAttribute="trailing" secondItem="puI-8h-gtR" secondAttribute="trailing" constant="42" id="9dr-Rc-b7l"/>
+                            <constraint firstItem="7Vr-Yq-Ln4" firstAttribute="bottom" secondItem="9nr-oh-g5q" secondAttribute="bottom" constant="356" id="BzC-1m-EKa"/>
                             <constraint firstItem="7Vr-Yq-Ln4" firstAttribute="trailing" secondItem="lKs-7H-Xyr" secondAttribute="trailing" constant="42" id="PyZ-rU-Cye"/>
                             <constraint firstItem="aM3-N7-d2Y" firstAttribute="top" secondItem="7Vr-Yq-Ln4" secondAttribute="top" constant="20" id="Rbd-h9-xan"/>
                             <constraint firstItem="lU0-B4-g9c" firstAttribute="leading" secondItem="7Vr-Yq-Ln4" secondAttribute="leading" constant="42" id="WjT-eD-6wP"/>
                             <constraint firstItem="lKs-7H-Xyr" firstAttribute="top" secondItem="lU0-B4-g9c" secondAttribute="bottom" constant="23" id="XDO-DC-6Ux"/>
                             <constraint firstItem="7Vr-Yq-Ln4" firstAttribute="bottom" secondItem="lKs-7H-Xyr" secondAttribute="bottom" constant="37" id="dLm-DE-ngv"/>
                             <constraint firstItem="7Vr-Yq-Ln4" firstAttribute="trailing" secondItem="9nr-oh-g5q" secondAttribute="trailing" constant="42" id="e8B-TB-uiq"/>
-                            <constraint firstItem="7Vr-Yq-Ln4" firstAttribute="bottom" secondItem="9nr-oh-g5q" secondAttribute="bottom" constant="365" id="fQe-Dp-Thk"/>
                             <constraint firstItem="aM3-N7-d2Y" firstAttribute="leading" secondItem="7Vr-Yq-Ln4" secondAttribute="leading" constant="42" id="hDs-aC-kCL"/>
                             <constraint firstItem="9nr-oh-g5q" firstAttribute="top" secondItem="7Vr-Yq-Ln4" secondAttribute="top" constant="83" id="jZy-6V-kkN"/>
-                            <constraint firstItem="lKs-7H-Xyr" firstAttribute="top" secondItem="9nr-oh-g5q" secondAttribute="bottom" constant="69" id="sfW-YA-bVK"/>
                             <constraint firstItem="lKs-7H-Xyr" firstAttribute="leading" secondItem="7Vr-Yq-Ln4" secondAttribute="leading" constant="42" id="uqj-62-OMl"/>
                             <constraint firstItem="lU0-B4-g9c" firstAttribute="top" secondItem="9nr-oh-g5q" secondAttribute="bottom" constant="23" id="x8u-6W-hao"/>
                         </constraints>
@@ -393,6 +392,7 @@
                         <outlet property="currentMonth" destination="aM3-N7-d2Y" id="ndo-1V-cjE"/>
                         <outlet property="currentSum" destination="puI-8h-gtR" id="Bhn-kc-S1n"/>
                         <outlet property="expenseCategory" destination="lKs-7H-Xyr" id="2xz-fq-gLg"/>
+                        <outlet property="pieChart" destination="9nr-oh-g5q" id="hEB-o5-ixV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kz1-Hs-zy9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
