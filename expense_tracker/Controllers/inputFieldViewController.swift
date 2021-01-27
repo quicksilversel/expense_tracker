@@ -35,12 +35,12 @@ class inputFieldViewController: UIViewController, CategoryDelegateProtocol, inco
     @IBAction func finishInput(_ sender: Any) {
         // alert if textfield is empty
         if self.inputAmount.text?.isEmpty == true {
-            let alertController = UIAlertController(title: "Error", message: "please enter an amount", preferredStyle: UIAlertController.Style.alert)
+            let alertController = UIAlertController(title: "Error", message: "Please enter an amount", preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alertController, animated:true, completion:nil)}
         // alert if category is not selected
         else if categoryInput.isEmpty == true {
-            let alertController = UIAlertController(title: "Error", message: "please select a category", preferredStyle: UIAlertController.Style.alert)
+            let alertController = UIAlertController(title: "Error", message: "Please select a category", preferredStyle: UIAlertController.Style.alert)
             alertController.addAction(UIAlertAction(title:"OK", style: UIAlertAction.Style.default, handler: nil))
             self.present(alertController, animated:true, completion:nil)}
         // expense
