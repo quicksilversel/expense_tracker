@@ -89,7 +89,7 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         let updatedExpense:Int = Int(expenseAmount)! + UserDefaults.standard.integer(forKey: "expenseBalance")
         UserDefaults.standard.set(updatedExpense, forKey: "expenseBalance")
         // add entry to table
-        let item = TransactionItem(date: transDate, amount: "-¥" + expenseAmount, notes: notes, category: category)
+        let item = TransactionItem(date: transDate, amount:  expenseAmount, notes: notes, category: category)
         let itemRef = self.ref.child(category).childByAutoId()
         itemRef.setValue(item.toAnyObject())
         
@@ -105,7 +105,7 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         let updatedIncome: Int = Int(incomeAmount)! + UserDefaults.standard.integer(forKey: "incomeBalance")
         UserDefaults.standard.set(updatedIncome, forKey: "incomeBalance")
         // add entry to table
-        let item = TransactionItem(date: transDate, amount: "+¥" + incomeAmount, notes: notes, category: category)
+        let item = TransactionItem(date: transDate, amount: incomeAmount, notes: notes, category: category)
         let itemRef = self.ref.child(category).childByAutoId()
         itemRef.setValue(item.toAnyObject())
         
@@ -125,7 +125,7 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
     
         let cell = tableView.dequeueReusableCell(withIdentifier: "transactionDataTableViewCell", for: indexPath) as! transactionDataTableViewCell
         cell.dateCell.text = transactionDataArr[indexPath.row].date
-        cell.amountCell.text = transactionDataArr[indexPath.row].amount
+        cell.amountCell.text = "¥" + transactionDataArr[indexPath.row].amount
         
         if transactionDataArr[indexPath.row].notes.isEmpty == true {
             cell.notesCell.text = transactionDataArr[indexPath.row].category

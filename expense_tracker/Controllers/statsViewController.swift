@@ -11,12 +11,13 @@ import Firebase
 class statsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     
-    // MARK: Properties
-    var statsCategory = [String]() // get category from firebase
+    // MARK: variables
+    var statsCategory = [String: Int]() // get category from firebase
     let ref = Database.database().reference(withPath:"transaction-data") // firebase
+    var keyArray = [String]()
+    var valueArray = [Int]()
     
     // MARK: Outlets
-    
     @IBOutlet weak var currentMonth: UILabel!
     @IBOutlet weak var currentSum: UILabel!
     @IBOutlet weak var expenseCategory: UITableView!
@@ -33,24 +34,39 @@ class statsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         // display sum
         let year = Calendar.current.component(.year, from: Date())
         let month = Calendar.current.component(.month, from: Date())
-        let sum = monthlyData[YearMonth(year:year, month:month)]
-        currentSum.text = "¥" + String(sum ?? 0)
+        var sum = monthlyData[YearMonth(year:year, month:month)]
+        currentSum.text = "¥" + String(UserDefaults.standard.integer(forKey: "currentBalance"))
         
         // display table
         expenseCategory.delegate = self
         expenseCategory.dataSource = self
         
-        // calculate amount by iterating 
-        ref.observe(.value, with: { snapshot in
-          var newItems: [String] = []
+        ref.queryOrdered(byChild: "category").observe(.value, with: { snapshot in
+            var newItems = [String: Int]()
+            var actualData = [String]()
+            var intData = [Int]()
             for child in snapshot.children.allObjects {
             if let snapshot = child as? DataSnapshot,
                let item = snapshot.key as? String {
-              newItems.append(item)
+                for nestedChild in snapshot.children {
+                    if let nestedSnapshot = nestedChild as? DataSnapshot,
+                       let nestedItem = nestedSnapshot.childSnapshot(forPath: "amount").value as? String {
+                        actualData.append(nestedItem)
+                        intData = actualData.compactMap{ Int($0) }
+                        sum = intData.reduce(0, +)
+                        newItems[item] = sum // add to dictonary
+                    }
+                }
+                actualData.removeAll() // initialze array
             }
           }
-          self.statsCategory = newItems
-          self.expenseCategory.reloadData()
+            self.statsCategory = newItems
+            for (key, value) in self.statsCategory
+            {
+                self.keyArray.append(key)
+                self.valueArray.append(value)
+            }
+            self.expenseCategory.reloadData()
         })
         
     }
@@ -61,7 +77,8 @@ class statsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "statsCategory", for: indexPath)
-        cell.textLabel?.text = self.statsCategory[indexPath.row]
+        cell.textLabel?.text = keyArray[indexPath.row]
+        cell.detailTextLabel?.text = "¥" +  String(valueArray[indexPath.row])
         return cell
     }
     
