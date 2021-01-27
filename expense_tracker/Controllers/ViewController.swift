@@ -19,6 +19,7 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
    // MARK: Variables
     var transactionDataArr = [TransactionItem]()
     let ref = Database.database().reference(withPath: "transaction-data") // firebase
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,25 +50,35 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         transactionDataTableView.register(UINib(nibName: "transactionDataTableViewCell", bundle: nil), forCellReuseIdentifier: "transactionDataTableViewCell")
         
         // synchronize data to table view from firebase
-        ref.queryOrdered(byChild: "timestamp").observe(.value, with: { snapshot in
+        ref.observe(.value, with: { snapshot in
           var newItems: [TransactionItem] = []
           for child in snapshot.children {
-            if let snapshot = child as? DataSnapshot,
-               let item = TransactionItem(snapshot: snapshot) {
-              newItems.append(item)
+            if let snapshot = child as? DataSnapshot {
+                for nestedChild in snapshot.children {
+                    if let nestedSnapshot = nestedChild as? DataSnapshot,
+                       let nestedItem = TransactionItem(snapshot:nestedSnapshot) {
+                        newItems.append(nestedItem)
+                    }
+                }
             }
           }
-          self.transactionDataArr = newItems
-          self.transactionDataTableView.reloadData()
+            self.transactionDataArr = newItems
+            self.transactionDataTableView.reloadData()
         })
 
 
         // Do any additional setup after loading the view.
     }
+        
     
-    // initialze balance
+    // initialze balance and store to monthlyData table
     func initBalance(){
+        // save to dictionary
+        let currentYear = Calendar.current.component(.year, from: Date())
+        let currentMonth = Calendar.current.component(.month, from: Date())
         let defaults = UserDefaults.standard
+        monthlyData[YearMonth(year: currentYear, month:currentMonth)] = UserDefaults.standard.integer(forKey: "expenseBalance")
+        // initialize current month balance
         defaults.set(0, forKey: "currentBalance")
         defaults.set(0, forKey: "expenseBalance")
         defaults.set(0, forKey: "incomeBalance")
@@ -79,7 +90,7 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         UserDefaults.standard.set(updatedExpense, forKey: "expenseBalance")
         // add entry to table
         let item = TransactionItem(date: transDate, amount: "-¥" + expenseAmount, notes: notes, category: category)
-        let itemRef = self.ref.childByAutoId()
+        let itemRef = self.ref.child(category).childByAutoId()
         itemRef.setValue(item.toAnyObject())
         
         // transactionDataArr.append(TransactionItem(date: transDate, amount: "-¥" + expenseAmount))
@@ -95,7 +106,7 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         UserDefaults.standard.set(updatedIncome, forKey: "incomeBalance")
         // add entry to table
         let item = TransactionItem(date: transDate, amount: "+¥" + incomeAmount, notes: notes, category: category)
-        let itemRef = self.ref.childByAutoId()
+        let itemRef = self.ref.child(category).childByAutoId()
         itemRef.setValue(item.toAnyObject())
         
         // transactionDataArr.append(TransactionItem(date: transDate, amount: "+¥" + incomeAmount))

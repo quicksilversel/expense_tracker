@@ -27,6 +27,8 @@
 		C81C3DB125BC866900AEEBE0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C81C3DAE25BC866900AEEBE0 /* GoogleService-Info.plist */; };
 		C844600925BDE22D0002F73D /* categoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C844600825BDE22D0002F73D /* categoryViewController.swift */; };
 		C844600E25BE73430002F73D /* incomeCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C844600D25BE73430002F73D /* incomeCategoryViewController.swift */; };
+		C844601F25C07C970002F73D /* statsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C844601E25C07C970002F73D /* statsViewController.swift */; };
+		C844602425C07DF90002F73D /* monthlyData.swift in Sources */ = {isa = PBXBuildFile; fileRef = C844602325C07DF90002F73D /* monthlyData.swift */; };
 		D96F5CE80F5598D3E0185B51 /* Pods_expense_tracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93924DD50A5F4F9943A13AE6 /* Pods_expense_tracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -78,6 +80,9 @@
 		C81C3DAE25BC866900AEEBE0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C844600825BDE22D0002F73D /* categoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = categoryViewController.swift; sourceTree = "<group>"; };
 		C844600D25BE73430002F73D /* incomeCategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = incomeCategoryViewController.swift; sourceTree = "<group>"; };
+		C844601225C04DCB0002F73D /* expense_tracker.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = expense_tracker.entitlements; sourceTree = "<group>"; };
+		C844601E25C07C970002F73D /* statsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = statsViewController.swift; sourceTree = "<group>"; };
+		C844602325C07DF90002F73D /* monthlyData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = monthlyData.swift; sourceTree = "<group>"; };
 		E9BA44E7976576E5CE7A8200 /* Pods-expense_tracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-expense_tracker.debug.xcconfig"; path = "Target Support Files/Pods-expense_tracker/Pods-expense_tracker.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +162,7 @@
 		C81C3D3D25B8FB4100AEEBE0 /* expense_tracker */ = {
 			isa = PBXGroup;
 			children = (
+				C844601225C04DCB0002F73D /* expense_tracker.entitlements */,
 				C8445FEA25BC9F240002F73D /* Models */,
 				C8445FE925BC9ED70002F73D /* Controllers */,
 				C81C3D3E25B8FB4100AEEBE0 /* AppDelegate.swift */,
@@ -198,6 +204,7 @@
 				C81C3D9525BBB12100AEEBE0 /* transactionDataTableViewCell.xib */,
 				C844600825BDE22D0002F73D /* categoryViewController.swift */,
 				C844600D25BE73430002F73D /* incomeCategoryViewController.swift */,
+				C844601E25C07C970002F73D /* statsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -206,6 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				C81C3D8C25BA7D1F00AEEBE0 /* transactionData.swift */,
+				C844602325C07DF90002F73D /* monthlyData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -456,11 +464,13 @@
 				C81C3D4325B8FB4100AEEBE0 /* ViewController.swift in Sources */,
 				C844600E25BE73430002F73D /* incomeCategoryViewController.swift in Sources */,
 				C81C3D9625BBB12100AEEBE0 /* transactionDataTableViewCell.swift in Sources */,
+				C844601F25C07C970002F73D /* statsViewController.swift in Sources */,
 				C81C3D3F25B8FB4100AEEBE0 /* AppDelegate.swift in Sources */,
 				C844600925BDE22D0002F73D /* categoryViewController.swift in Sources */,
 				C81C3D4125B8FB4100AEEBE0 /* SceneDelegate.swift in Sources */,
 				C81C3D7F25B92BF000AEEBE0 /* inputFieldViewController.swift in Sources */,
 				C81C3D4925B8FB4100AEEBE0 /* expense_tracker.xcdatamodeld in Sources */,
+				C844602425C07DF90002F73D /* monthlyData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -637,6 +647,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = expense_tracker/expense_tracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = expense_tracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -656,6 +667,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = expense_tracker/expense_tracker.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = expense_tracker/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
