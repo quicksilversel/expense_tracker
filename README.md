@@ -1,5 +1,7 @@
 # Expense Tracker
-Expense tracker is a money managaement app for iOS. 
+Expense tracker is a money management app for iOS. 
+
+<img src="https://github.com/quicksilversel/expense_tracker/blob/main/demos/expense_tracker_sampleshot.jpg" width="600">
 
 # Features
 - Statistics page that shows money spent by category 
