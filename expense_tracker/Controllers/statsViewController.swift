@@ -101,6 +101,7 @@ class statsViewController: UIViewController, UITableViewDelegate, UITableViewDat
         format.numberStyle = .none
         let formatter = DefaultValueFormatter(formatter: format)
         pieChartData.setValueFormatter(formatter)
+        pieChartData.setDrawValues(false)
         pieChart.data = pieChartData
     }
     

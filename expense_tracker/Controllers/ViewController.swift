@@ -76,9 +76,9 @@ class ViewController: UIViewController, MyDataSendingDelegateProtocol, UITableVi
         // save to dictionary
         let currentYear = Calendar.current.component(.year, from: Date())
         let currentMonth = Calendar.current.component(.month, from: Date())
-        let defaults = UserDefaults.standard
         monthlyData[YearMonth(year: currentYear, month:currentMonth)] = UserDefaults.standard.integer(forKey: "expenseBalance")
         // initialize current month balance
+        let defaults = UserDefaults.standard
         defaults.set(0, forKey: "currentBalance")
         defaults.set(0, forKey: "expenseBalance")
         defaults.set(0, forKey: "incomeBalance")
