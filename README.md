@@ -1,4 +1,4 @@
-# expense_tracker
+# Expense Tracker
 Expense tracker is a money managaement app for iOS. 
 
 # Features
