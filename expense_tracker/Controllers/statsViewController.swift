@@ -15,8 +15,7 @@ class statsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     // MARK: variables
     var statsCategory = [String: Int]() // get category from firebase
     let ref = Database.database().reference(withPath:"transaction-data")
-    var keyArray = [String]()
-    var valueArray = [Int]()
+
     
     // MARK: Outlets
     @IBOutlet weak var currentMonth: UILabel!
@@ -46,33 +45,33 @@ class statsViewController: UIViewController, UITableViewDelegate, UITableViewDat
             var newItems = [String: Int]()
             var actualData = [String]()
             var intData = [Int]()
+            var keyArray = [String]()
+            var valueArray = [Int]()
             for child in snapshot.children.allObjects {
-            if let snapshot = child as? DataSnapshot,
+                if let snapshot = child as? DataSnapshot,
                let item = snapshot.key as? String {
-                for nestedChild in snapshot.children {
-                    if let nestedSnapshot = nestedChild as? DataSnapshot,
-                       let nestedItem = nestedSnapshot.childSnapshot(forPath: "amount").value as? String {
-                        actualData.append(nestedItem)
-                        intData = actualData.compactMap{ Int($0) }
-                        sum = intData.reduce(0, +)
-                        newItems[item] = sum // add to dictonary
+                    for nestedChild in snapshot.children {
+                        if let nestedSnapshot = nestedChild as? DataSnapshot,
+                           let nestedItem = nestedSnapshot.childSnapshot(forPath: "amount").value as? String {
+                            actualData.append(nestedItem)
+                            intData = actualData.compactMap{ Int($0) }
+                            sum = intData.reduce(0, +)
+                            newItems[item] = sum // add to dictonary
+                            }
                     }
-                }
                 actualData.removeAll() // initialze array
+                }
             }
-          }
             self.statsCategory = newItems
-            for (key, value) in self.statsCategory
-            {
-                self.keyArray.append(key)
-                self.valueArray.append(value)
+            for (key, value) in self.statsCategory {
+                keyArray.append(key)
+                valueArray.append(value)
             }
             self.expenseCategory.reloadData()
             // pie chart
-            self.customizeChart(dataPoints: self.keyArray, values: self.valueArray.map{ Double($0) })
+            self.customizeChart(dataPoints: keyArray, values: valueArray.map{ Double($0) })
 
         })
-        
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,6 +79,12 @@ class statsViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        var keyArray = [String]()
+        var valueArray = [Int]()
+        for (key, value) in self.statsCategory {
+            keyArray.append(key)
+            valueArray.append(value)
+        }
         let cell = tableView.dequeueReusableCell(withIdentifier: "statsCategory", for: indexPath)
         cell.textLabel?.text = keyArray[indexPath.row]
         cell.detailTextLabel?.text = "¥" +  String(valueArray[indexPath.row])
