@@ -1,7 +1,7 @@
 # Expense Tracker
 Expense tracker is a money management app for iOS. 
 
-<img src="https://github.com/quicksilversel/expense_tracker/blob/main/demos/expense_tracker_sampleshot.jpg" width="600">
+<img src="https://github.com/quicksilversel/quicksilversel.github.io/blob/main/img/projects/expensetracker_mockup.jpg" width="600">
 
 # Features
 - Firebase support 
